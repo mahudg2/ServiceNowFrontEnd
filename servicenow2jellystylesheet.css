@@ -1,8 +1,4 @@
-#testid{
-height: 180px;
-}	
-	
-	#slides {
+    #slides {
       display: none
     }
 
@@ -312,7 +308,6 @@ width:220px;
 
 .container_16 .grid_5 {
 width:280px;
-z-index: 10;
 }
 
 .container_16 .grid_6 {
@@ -673,13 +668,8 @@ body{
 background:#f7f7f7;
 }
 .header{
-background:#3671b6;
-background-image:url(header-bg.png);
-background-repeat:no-repeat;
-background-attachment:fixed;
-background-position:center; 
+background:#005DAA;
 color:white;
-height:180px;
 }
 .header #headerimage
 {
