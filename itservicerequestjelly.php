@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
 
-<link href="servicenowfrontendstylesheet.css" rel="stylesheet" type="text/css"></link>
+<link href="05652dc8e06a910054dd857c9da4d61f.cssdbx" rel="stylesheet" type="text/css"></link>
 <script language="javascript" src="jquery.jsdbx" />
 <script language="javascript" src="rslide.jsdbx" />
 <script>
@@ -26,7 +26,8 @@ if (typeof jQuery != 'undefined') {
     alert("jQuery library is not found!");
  
 </script>
-<div style="width:100%;height:45px;background-image: url(images/topbg.png);">
+
+<div style="width:100%;height:45px;background-image: url(topbg.pngx);">
 <div class="container_16">
   <div class="grid_16" style="margin-top:10px;color:white;">
   <a href="http://www.uky.edu">UKY.EDU</a>&#160;&#160;&#160;&#160;
@@ -77,10 +78,10 @@ if (typeof jQuery != 'undefined') {
         <li><a href='http://uky.onthehub.com/WebStore/Welcome.aspx?JSEnabled=1'><span>Windows 7</span></a></li>
 		        <li><a href='https://apps.uky.edu'><span>SAS</span></a></li>
 
-         <li class='last'><a href='http://www.uky.edu/ukit/help/software/matlab'><span>Matlab</span></a></li>
+         <li class='last'><a href='http://download.uky.edu'><span>Matlab</span></a></li>
       </ul>
    </li>
-   <li class='has-sub'><a href='#'><span>How-To</span></a>
+   <li class='has-sub'><a href='empty.htm'><span>How-To</span></a>
       <ul>
          <li><a href='https://www.uky.edu/ukit/techtips/students/password/resetting'><span>Reset your password</span></a></li>
          <li class='last'><a href='empty.htm'><span>Search</span></a></li>
@@ -98,30 +99,10 @@ if (typeof jQuery != 'undefined') {
 
 
   <div class="clear"></div>
-  <div class="grid_16"><br/></div>
-   <div class="grid_5" id="sidebar">
-  <h3>Get Help With...</h3>
-<div id='csssidemenu'>
-<ul>
-   <li><a href='http://www.uky.edu/ukit/help/uk-email-and-cloud-app-information'><span>Email</span></a></li>
-   <li class='active'><a href='http://www.uky.edu/ukit/help/linkblue'><span>Account Access</span></a></li>
-   <li><a href='https://www.uky.edu/acadtrain/blackboard/bbu'><span>Blackboard</span></a></li>
-   <li><a href='http://www.uky.edu/ukit/help'><span>IT Services</span></a></li>
-   <li><a href='http://www.uky.edu/ukit/help/software'><span>Software Downloads</span></a></li>
-   <li><a href='https://www.uky.edu/acadtrain/vpn'><span>VPN</span></a></li>
-   <li class='last'><a href='http://www.uky.edu/ukit/cns/phones'><span>Phones</span></a></li>
-</ul>
-</div>
+  <div class="grid_16"><br/>
+testtest
+  
   </div>
-  <div class="grid_11">
-   <div class="container">
-  <ul class="rslides" id="slider2">
-      <li><a href="http://uky.onthehub.com/WebStore/Welcome.aspx?JSEnabled=1"><img src="http://www.uky.edu/~mahudg2/servicenowfrontend/img/example-slide-1.jpg" alt="" /></a></li>
-      <li><a href="empty.htm"><img src="http://www.uky.edu/~mahudg2/servicenowfrontend/img/example-slide-2.jpg" alt="" /></a></li>
-      <li><a href="empty.htm"><img src="http://www.uky.edu/~mahudg2/servicenowfrontend/img/example-slide-1.jpg" alt="" /></a></li>
-    </ul>
-  </div>
-</div>
 
 <div class="grid_16"><br/><br/></div>
   <div class="grid_6">
@@ -151,12 +132,109 @@ if (typeof jQuery != 'undefined') {
 <h3>Status</h3>   
 
   <p>
-      <img src="http://www.uky.edu/~mahudg2/icons/check.png"/> Blackboard <br/>
-	  <img src="http://www.uky.edu/~mahudg2/icons/check.png"/> Faculty/Staff Email <br/>
-	  <img src="http://www.uky.edu/~mahudg2/icons/check.png"/> Student Email <br/>
-	  <img src="http://www.uky.edu/~mahudg2/icons/check.png"/> Internet <br/>
-	  <img src="http://www.uky.edu/~mahudg2/icons/check.png"/> Phones <br/>
-	  <img src="http://www.uky.edu/~mahudg2/icons/check.png"/> Long Distance <br/>
+<g:evaluate>
+var gr = new GlideRecord('u_uksystemstatus');
+var statuses = new Array();
+var servicestates = new Array();
+var i = 0;
+gr.query();
+gr.next();
+longdistancedesc = gr.u_servicedesc.toString();
+longdistancestate = gr.u_servicestate.toString();
+gr.next();
+blackboarddesc = gr.u_servicedesc.toString();
+blackboardstate = gr.u_servicestate.toString();
+gr.next();
+phonesdesc = gr.u_servicedesc.toString();
+phonestate = gr.u_servicestate.toString();
+gr.next();
+internetdesc = gr.u_servicedesc.toString();
+internetstate = gr.u_servicestate.toString();
+gr.next();
+facultyemaildesc = gr.u_servicedesc.toString();
+facultyemailstate = gr.u_servicestate.toString();
+gr.next();
+studentemaildesc = gr.u_servicedesc.toString();
+studentemailstate = gr.u_servicestate.toString();
+while(gr.next())
+{
+statuses[i] = gr.u_servicetitle.toString();
+servicestates[i] = gr.u_servicestate.toString();
+i = i + 1;
+}
+
+</g:evaluate>
+<j:if test="${internetstate=='0'}">
+		<img src="green.pngx" width="14" height="16"/>
+	</j:if>
+<j:if test="${internetstate=='1'}">
+<img src="yellow.pngx" width="14" height="16"/>
+</j:if>
+<j:if test="${internetstate=='2'}">
+<img src="red.pngx" width="14" height="16"/>
+</j:if>
+&#160;Internet<br/>
+
+<j:if test="${blackboardstate=='0'}">
+		<img src="green.pngx" width="14" height="16"/>
+	</j:if>
+<j:if test="${blackboardstate=='1'}">
+<img src="yellow.pngx" width="14" height="16"/>
+</j:if>
+<j:if test="${blackboardstate=='2'}">
+<img src="red.pngx" width="14" height="16"/>
+</j:if>
+&#160;Blackboard<br/>
+
+
+<j:if test="${phonestate=='0'}">
+		<img src="green.pngx" width="14" height="16"/>
+	</j:if>
+<j:if test="${phonestate=='1'}">
+<img src="yellow.pngx" width="14" height="16"/>
+</j:if>
+<j:if test="${phonestate=='2'}">
+<img src="red.pngx" width="14" height="16"/>
+</j:if>
+
+
+&#160;Phones<br/>
+
+
+<j:if test="${longdistancestate=='0'}">
+		<img src="green.pngx" width="14" height="16"/>
+	</j:if>
+<j:if test="${longdistancestate=='1'}">
+<img src="yellow.pngx" width="14" height="16"/>
+</j:if>
+<j:if test="${longdistancestate=='2'}">
+<img src="red.pngx" width="14" height="16"/>
+</j:if>
+&#160;Long Distance<br/>
+
+
+<j:if test="${facultyemailstate=='0'}">
+		<img src="green.pngx" width="14" height="16"/>
+	</j:if>
+<j:if test="${facultyemailstate=='1'}">
+<img src="yellow.pngx" width="14" height="16"/>
+</j:if>
+<j:if test="${facultyemailstate=='2'}">
+<img src="red.pngx" width="14" height="16"/>
+</j:if>
+&#160;Faculty/Staff Email<br/>
+
+
+<j:if test="${studentemailstate=='0'}">
+		<img src="green.pngx" width="14" height="16"/>
+	</j:if>
+<j:if test="${studentemailstate=='1'}">
+<img src="yellow.pngx" width="14" height="16"/>
+</j:if>
+<j:if test="${studentemailstate=='2'}">
+<img src="red.pngx" width="14" height="16"/>
+</j:if>
+&#160;Student Email<br/>
 	  <a href="https://www.uky.edu/ukit/help/system-status"><span style="color:rgb(60, 60, 250);">View Details</span></a>
     </p>
   </div>
